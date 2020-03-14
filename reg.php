@@ -16,7 +16,8 @@ if(!empty($email) AND !empty($phone) AND !empty($checkbox)){
 	$mysql = new mysqli('localhost','root','','datauser');
 	$result = $mysql->query("SELECT * FROM users WHERE `email` = '$email' AND `ioc`='$chioc'");
 	$user = $result->fetch_assoc();
-	$mysql->close;
+    $mysql->close;
+    
 
 	if(count($user) ==0){
         
@@ -30,9 +31,10 @@ if(!empty($email) AND !empty($phone) AND !empty($checkbox)){
 
 		//$smsru->send_one($data); // Отправка
 
-		$mysql->close;
+        $mysql->close;
+        header('Location: index.php');
 		exit();
-
+		
 	}else{
 		setcookie("nuser", $user['email'], time() +3600);
 		//echo "все круто";
